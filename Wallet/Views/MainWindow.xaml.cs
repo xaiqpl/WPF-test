@@ -26,5 +26,13 @@ namespace Wallet.Views
             InitializeComponent();
             this.DataContext = new MainViewModel();
         }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
     }
 }

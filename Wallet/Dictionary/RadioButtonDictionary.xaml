@@ -81,4 +81,77 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="MyButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Height" Value="45"/>
+        <Setter Property="Width" Value="220"/>        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="20" Padding="20 0 " Background="{TemplateBinding Background}" Name="btnBorder" BorderBrush="Transparent" BorderThickness="3">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <TextBlock Text="{Binding Icon}" FontFamily="../Assets/Font/#iconfont" VerticalAlignment="Center" Foreground="White"
+                                       FontSize="20"/>
+                            <TextBlock Text="{Binding Title}" Margin="20 0 0 0" FontFamily="../Assets/Font/#iconfont" Foreground="White"
+                                       FontSize="20" VerticalAlignment="Center"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="btnBorder" Value="#21203b"/>
+                            <Setter Property="BorderBrush" TargetName="btnBorder">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0.5 0" EndPoint="0.5 1">
+                                        <GradientStop Color="#d489ff" Offset="0"/>
+                                        <GradientStop Color="#7985ff" Offset="0.6"/>
+                                        <GradientStop Color="#6ad8ff" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="btnBorder" Value="#3a3a6b"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TabRadioButtonStyle" TargetType="RadioButton">
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="White"/>
+        
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="BorderThickness" Value="0 0 0 2"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Border Padding="20 10" CornerRadius="20 20 0 0" Background="{TemplateBinding Background}" Name="rdBorder" BorderBrush="Transparent" BorderThickness="0 0 0 2">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">                            
+                            <Setter TargetName="rdBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0.5 1" EndPoint="1 1">
+                                        <GradientStop Color="#d489ff" Offset="0"/>
+                                        <GradientStop Color="#7985ff" Offset="0.6"/>
+                                        <GradientStop Color="#6ad8ff" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>                           
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="rdBorder" Value="#3a3a6b"/>                          
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
