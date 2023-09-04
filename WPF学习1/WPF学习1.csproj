@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Core\Class1.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="images\chat50.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenAI" Version="1.7.2" />
+    <PackageReference Include="SciChart" Version="7.0.2.27161" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\chat50.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>
