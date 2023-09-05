@@ -275,4 +275,33 @@
         </Setter>
     </Style>
 
+    <Style x:Key="CommonButtonStyle" TargetType="Button">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>               
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="10" Name="btnBorder" BorderThickness="3" Background="{TemplateBinding Background}">                        
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">                            
+                            <Setter Property="BorderBrush" TargetName="btnBorder">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0.5 0" EndPoint="0.5 1">
+                                        <GradientStop Color="#d489ff" Offset="0"/>
+                                        <GradientStop Color="#7985ff" Offset="0.6"/>
+                                        <GradientStop Color="#6ad8ff" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                             <Setter Property="Background" TargetName="btnBorder" Value="#3a3a6b"/>                            
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

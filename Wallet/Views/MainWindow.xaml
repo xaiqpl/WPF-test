@@ -4,10 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wallet"
+        xmlns:cv="clr-namespace:Wallet.Converter"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1100" WindowStyle="None" 
         WindowStartupLocation="CenterScreen" BorderBrush="Transparent"
         Background="Transparent" AllowsTransparency="True">
+    <Window.Resources>
+        <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Window.Resources>
     <Border CornerRadius="25">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -73,37 +77,78 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <RadioButton Content="指出" GroupName="TabRadioButton" Style="{StaticResource TabRadioButtonStyle}" IsChecked="True"></RadioButton>
-                                <RadioButton Content="申请" GroupName="TabRadioButton" Style="{StaticResource TabRadioButtonStyle}" Grid.Column="1"></RadioButton>
+                                <RadioButton Content="指出" GroupName="TabRadioButton" x:Name="PayRButton" Style="{StaticResource TabRadioButtonStyle}" IsChecked="True"></RadioButton>
+                                <RadioButton Content="申请" GroupName="TabRadioButton" x:Name="GetRButton" Style="{StaticResource TabRadioButtonStyle}" Grid.Column="1"></RadioButton>
                             </Grid>
 
-                            <StackPanel Margin="20,20,20,0">
-                                <TextBlock Text="二维码" Foreground="White" FontSize="18" FontWeight="Light"/>
-                                <TextBox Text="f45d122d554f45d122d554" Foreground="White" Margin="0 5 "  Style="{StaticResource TextBlockStyle}" IsReadOnly="True"/>
-                                <TextBox Margin="0 5" Style="{StaticResource InputTextBoxStyle}"/>
+
+                            <StackPanel Visibility="{Binding ElementName=PayRButton,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+                                <StackPanel Margin="20,20,20,0">
+                                    <TextBlock Text="二维码" Foreground="White" FontSize="18" FontWeight="Light"/>
+                                    <TextBox Text="f45d122d554f45d122d554" Foreground="White" Margin="0 5 "  Style="{StaticResource TextBlockStyle}" IsReadOnly="True"/>
+                                    <TextBox Margin="0 5" Style="{StaticResource InputTextBoxStyle}"/>
+                                </StackPanel>
+                                <Grid Margin="20,10,20,10" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="金额" Foreground="White" FontSize="18" FontWeight="Light" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="原因" Foreground="White" FontSize="18" FontWeight="Light" VerticalAlignment="Center"/>
+                                    <TextBox Grid.Row="1" Grid.Column="0" Text="$300" Foreground="White" Margin="10 5 "  Style="{StaticResource CustomTextBoxStyle}" IsReadOnly="True"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Text="购买邮箱" Foreground="White" Margin="10 5 " Style="{StaticResource CustomTextBoxStyle}" IsReadOnly="True"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="手续费：" Foreground="White" FontSize="15" FontWeight="Light" VerticalAlignment="Center"/>
+                                    <TextBox Grid.Row="2" Grid.Column="0" Text="$3" Foreground="White" Margin="70 0 20 0 "  Style="{StaticResource CustomTextBoxStyle}" IsReadOnly="True"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Text="总共：" Foreground="White" FontSize="15" FontWeight="Light" VerticalAlignment="Center"/>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Text="$303" Foreground="White" Margin="60 0 20 0 "  Style="{StaticResource CustomTextBoxStyle}" IsReadOnly="True"/>
+                                    <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource PayButtonStyle}" VerticalAlignment="Center" ></Button>
+                                </Grid>
                             </StackPanel>
 
-                            <Grid Margin="20,20,20,0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Row="0" Grid.Column="0" Text="金额" Foreground="White" FontSize="18" FontWeight="Light" VerticalAlignment="Center"/>
-                                <TextBlock Grid.Row="0" Grid.Column="1" Text="原因" Foreground="White" FontSize="18" FontWeight="Light" VerticalAlignment="Center"/>
-                                <TextBox Grid.Row="1" Grid.Column="0" Text="$300" Foreground="White" Margin="10 5 "  Style="{StaticResource CustomTextBoxStyle}" IsReadOnly="True"/>
-                                <TextBox Grid.Row="1" Grid.Column="1" Text="购买邮箱" Foreground="White" Margin="10 5 " Style="{StaticResource CustomTextBoxStyle}" IsReadOnly="True"/>
-                                <TextBlock Grid.Row="2" Grid.Column="0" Text="手续费：" Foreground="White" FontSize="15" FontWeight="Light" VerticalAlignment="Center"/>
-                                <TextBox Grid.Row="2" Grid.Column="0" Text="$3" Foreground="White" Margin="70 0 20 0 "  Style="{StaticResource CustomTextBoxStyle}" IsReadOnly="True"/>
-                                <TextBlock Grid.Row="2" Grid.Column="1" Text="总共：" Foreground="White" FontSize="15" FontWeight="Light" VerticalAlignment="Center"/>
-                                <TextBox Grid.Row="2" Grid.Column="1" Text="$303" Foreground="White" Margin="60 0 20 0 "  Style="{StaticResource CustomTextBoxStyle}" IsReadOnly="True"/>
-                                <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource PayButtonStyle}" VerticalAlignment="Center" ></Button>
-                            </Grid>
+                            <StackPanel Visibility="{Binding ElementName=GetRButton,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+                                <Border Margin="40 40" Height="150" VerticalAlignment="Top" CornerRadius="25">
+                                    <Border.Background>
+                                        <LinearGradientBrush>
+                                            <GradientStop Color="#d489ff" Offset="0"/>
+                                            <GradientStop Color="#7985ff" Offset="0.6"/>
+                                            <GradientStop Color="#6ad8ff" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="&#xeb0d;" FontFamily="../Assets/Font/#iconfont" FontSize="30" 
+                                       VerticalAlignment="Center" Margin="40 00 0 0" Foreground="White"/>
+
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="30 0" VerticalAlignment="Center">
+                                            <TextBlock Text="&#xe65d;" FontFamily="../Assets/Font/#iconfont" FontSize="30" Foreground="White"/>
+                                            <TextBlock Text="钱包夹" VerticalAlignment="Center" Margin="15 0 0 0" FontSize="20" Foreground="White" FontWeight="Bold"/>
+                                        </StackPanel>
+
+                                        <UniformGrid Columns="4" Grid.Row="1">
+                                            <TextBlock Text="5648" FontSize="20" Foreground="White" FontWeight="ExtraLight" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock Text="3500" FontSize="20" Foreground="White" FontWeight="ExtraLight" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock Text="9912" FontSize="20" Foreground="White" FontWeight="ExtraLight" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock Text="6100" FontSize="20" Foreground="White" FontWeight="ExtraLight" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </UniformGrid>
+
+                                        <TextBlock Grid.Row="2" Text="￥8,520,00" FontSize="25" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="20 0"/>
+
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+
+
+
                         </StackPanel>
                     </Border>
                     <Border Margin="70 40" Height="150" VerticalAlignment="Top" CornerRadius="25">
@@ -140,7 +185,131 @@
                         </Grid>
                     </Border>
                 </Grid>
+
+                <Grid Grid.Column="2">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Style="{StaticResource CommonButtonStyle}" 
+                                Background="#392f57" Content="&#xe621; 添加筛选" FontFamily="../Assets/Font/#iconfont"  Foreground="White" Margin="20,40,0,10" FontSize="16"
+                                VerticalAlignment="Top" HorizontalAlignment="Left" Width="260" Height="45"/>
+                        <Button Style="{StaticResource CommonButtonStyle}" 
+                                Background="#392f57" Content="&#xe633;" FontFamily="../Assets/Font/#iconfont"  Foreground="White" Margin="10,40,0,10" FontSize="16"
+                                VerticalAlignment="Top" HorizontalAlignment="Left" Width="50" Height="45"/>
+                        <Button Style="{StaticResource CommonButtonStyle}" 
+                                Background="#392f57" Content="&#xe619;" FontFamily="../Assets/Font/#iconfont"  Foreground="White" Margin="10,40,0,10" FontSize="16"
+                                VerticalAlignment="Top" HorizontalAlignment="Left" Width="50" Height="45"/>
+                    </StackPanel>
+
+                    <Border Margin="20 120 20 0" Height="150" CornerRadius="25" VerticalAlignment="Top">
+                        <Border.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Color="#a283fa" Offset="0"/>
+                                <GradientStop Color="#c07bfe" Offset="1"/>                                
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="收支" FontFamily="../Assets/Font/#iconfont" FontSize="20"  FontWeight="DemiBold"
+                                       VerticalAlignment="Center" Margin="20 00 0 0" Foreground="White"/>
+
+                            <Button Style="{StaticResource CommonButtonStyle}" Width="40" Height="40" Background="#392f57" 
+                                    Content="$" Foreground="White" FontSize="15"
+                                    HorizontalAlignment="Right" Margin="20 0 20 0"/>
+
+
+                            <TextBlock Grid.Row="1" Text="￥ 9,150,00" FontFamily="../Assets/Font/#iconfont" FontSize="25"  FontWeight="DemiBold"
+                                       VerticalAlignment="Center" Margin="20 00 0 0" Foreground="White"/>
+
+                            <Button Grid.Row="1" Style="{StaticResource CommonButtonStyle}" Width="40" Height="40" Background="#392f57" 
+                                    Content="%" Foreground="White" FontSize="15"
+                                    HorizontalAlignment="Right" Margin="20 0 20 0"/>
+
+                            <Button Grid.Row="2" Style="{StaticResource CommonButtonStyle}" Width="40" Height="40" Background="#392f57" 
+                                    Content="&#xe62f;" Foreground="White" FontSize="15" FontFamily="../Assets/Font/#iconfont"
+                                    HorizontalAlignment="Left" Margin="20 0 20 0"/>
+                            <TextBlock Grid.Row="2" Text="+ ￥ 620.12,00" FontFamily="../Assets/Font/#iconfont" FontSize="15"  
+                                       VerticalAlignment="Center" Margin="70 00 0 0" Foreground="White"/>
+                            <Button Grid.Row="2" Style="{StaticResource CommonButtonStyle}" Width="40" Height="40" Background="#392f57" 
+                                    Content="&#xe630;" Foreground="White" FontSize="15" FontFamily="../Assets/Font/#iconfont"
+                                    HorizontalAlignment="Left" Margin="180 0 20 0"/>
+
+                            <TextBlock Grid.Row="2" Text="￥ 9,150,00" FontFamily="../Assets/Font/#iconfont" FontSize="15"  
+                                       VerticalAlignment="Center" Margin="230 00 0 0" Foreground="White"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Margin="20 290 20 0" Height="120" CornerRadius="25" VerticalAlignment="Top" Background="#362f54">                        
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="信息" FontFamily="../Assets/Font/#iconfont" FontSize="20"  FontWeight="DemiBold"
+                                       VerticalAlignment="Center" Margin="20 00 0 0" Foreground="White"/>
+
+                            <Button Grid.RowSpan="2" Style="{StaticResource CommonButtonStyle}" Width="40" Height="40" Background="#393f57" 
+                                    Content="✎" Foreground="White" FontSize="15"
+                                    HorizontalAlignment="Right" Margin="20 0 20 0"/>
+
+
+                            <TextBlock Grid.Row="1" Text="&#xe65e; 地址：" FontFamily="../Assets/Font/#iconfont" FontSize="15"  FontWeight="DemiBold"
+                                       VerticalAlignment="Center" Margin="20 00 0 0" Foreground="White"/>
+                            <TextBlock Grid.Row="1" Text="Si Chuang"  FontSize="15"  
+                                       VerticalAlignment="Center" Margin="120 00 0 0" Foreground="White"/>
+
+
+                            <TextBlock Grid.Row="2" Text="&#xe600; 钱包ID：" FontFamily="../Assets/Font/#iconfont" FontSize="15"  FontWeight="DemiBold"
+                                       VerticalAlignment="Center" Margin="20 00 0 0" Foreground="White"/>
+                            <TextBlock Grid.Row="2" Text="sdfsdfsdfsfsdf234sf23423sfsf"  FontSize="15"  
+                                       VerticalAlignment="Center" Margin="120 00 0 0" Foreground="White"/>
+
+
+                        </Grid>
+                    </Border>
+
+                    <Border Margin="20 430 20 0" Height="170" CornerRadius="25" VerticalAlignment="Top" Background="#362f54">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="安全" FontFamily="../Assets/Font/#iconfont" FontSize="20"  FontWeight="DemiBold"
+                                       VerticalAlignment="Center" Margin="20 00 0 0" Foreground="White"/>
+                            <Button  Style="{StaticResource CommonButtonStyle}" Width="50" Height="40" Background="#393f57" 
+                                    Content="..." Foreground="White" FontSize="13"
+                                    HorizontalAlignment="Right" Margin="20 0 20 0"/>
+
+
+                            <TextBlock Grid.Row="1" Text="&#xe88c;  2FA已启用：" FontFamily="../Assets/Font/#iconfont" FontSize="15"  FontWeight="DemiBold"
+                                       VerticalAlignment="Center" Margin="20 00 0 0" Foreground="White"/>
+                            <Button Grid.Row="1"  Style="{StaticResource CommonButtonStyle}" Width="50" Height="40" Background="#393f57" 
+                                    Content="修改" Foreground="White" FontSize="13"
+                                    HorizontalAlignment="Right" Margin="20 0 20 0"/>
+
+                            <TextBlock Grid.Row="2" Text="&#xe8a3;  Key" FontFamily="../Assets/Font/#iconfont" FontSize="15"  FontWeight="DemiBold"
+                                       VerticalAlignment="Center" Margin="20 00 0 0" Foreground="White"/>
+                            <Button Grid.Row="2"  Style="{StaticResource CommonButtonStyle}" Width="50" Height="40" Background="#393f57" 
+                                    Content="修改" Foreground="White" FontSize="13"
+                                    HorizontalAlignment="Right" Margin="20 0 20 0"/>
+
+                            <TextBlock Grid.Row="3" Text="&#xe61a;  密码" FontFamily="../Assets/Font/#iconfont" FontSize="15"  FontWeight="DemiBold"
+                                       VerticalAlignment="Center" Margin="20 00 0 0" Foreground="White"/>
+                            <Button Grid.Row="3"  Style="{StaticResource CommonButtonStyle}" Width="50" Height="40" Background="#393f57" 
+                                    Content="修改" Foreground="White" FontSize="13"
+                                    HorizontalAlignment="Right" Margin="20 0 20 0"/>
+                        </Grid>
+                    </Border>
+
+                </Grid>
             </Grid>
+
+
         </Grid>
 
     </Border>
