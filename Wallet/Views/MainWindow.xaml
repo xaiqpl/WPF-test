@@ -31,7 +31,7 @@
                     </LinearGradientBrush>
                 </Border.Background>
             </Border>
-          
+
             <Grid Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -48,7 +48,7 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <RadioButton GroupName="MyGrop" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                              Style="{StaticResource RadioButtonStyle}">                                    
+                                              Style="{StaticResource RadioButtonStyle}">
                                 </RadioButton>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -59,7 +59,7 @@
                         <Button   DataContext="{Binding CountModel}"      Style="{StaticResource MyButtonStyle}">
                         </Button>
                         <Button   DataContext="{Binding ExitModel}"
-                                              Style="{StaticResource MyButtonStyle}">
+                                              Style="{StaticResource MyButtonStyle}" Click="CloseButton_Click"   >
                         </Button>
 
                     </StackPanel>
@@ -67,14 +67,42 @@
                 <Grid Grid.Column="1">
                     <Border Margin="20 120 20 100" Background="#362f54" CornerRadius="25">
                         <StackPanel Margin="10 100 10 20">
-                            <TextBlock Text="柳神" Foreground="#fcfcfc" FontSize="34" HorizontalAlignment="Center" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            <TextBlock Text="消耗" Foreground="#fcfcfc" FontSize="34" HorizontalAlignment="Center" FontWeight="SemiBold" VerticalAlignment="Center"/>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <RadioButton Content="支出" GroupName="TabRadioButton" Style="{StaticResource TabRadioButtonStyle}"></RadioButton>
+                                <RadioButton Content="指出" GroupName="TabRadioButton" Style="{StaticResource TabRadioButtonStyle}" IsChecked="True"></RadioButton>
                                 <RadioButton Content="申请" GroupName="TabRadioButton" Style="{StaticResource TabRadioButtonStyle}" Grid.Column="1"></RadioButton>
+                            </Grid>
+
+                            <StackPanel Margin="20,20,20,0">
+                                <TextBlock Text="二维码" Foreground="White" FontSize="18" FontWeight="Light"/>
+                                <TextBox Text="f45d122d554f45d122d554" Foreground="White" Margin="0 5 "  Style="{StaticResource TextBlockStyle}" IsReadOnly="True"/>
+                                <TextBox Margin="0 5" Style="{StaticResource InputTextBoxStyle}"/>
+                            </StackPanel>
+
+                            <Grid Margin="20,20,20,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="金额" Foreground="White" FontSize="18" FontWeight="Light" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="原因" Foreground="White" FontSize="18" FontWeight="Light" VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="1" Grid.Column="0" Text="$300" Foreground="White" Margin="10 5 "  Style="{StaticResource CustomTextBoxStyle}" IsReadOnly="True"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="购买邮箱" Foreground="White" Margin="10 5 " Style="{StaticResource CustomTextBoxStyle}" IsReadOnly="True"/>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="手续费：" Foreground="White" FontSize="15" FontWeight="Light" VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="2" Grid.Column="0" Text="$3" Foreground="White" Margin="70 0 20 0 "  Style="{StaticResource CustomTextBoxStyle}" IsReadOnly="True"/>
+                                <TextBlock Grid.Row="2" Grid.Column="1" Text="总共：" Foreground="White" FontSize="15" FontWeight="Light" VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="$303" Foreground="White" Margin="60 0 20 0 "  Style="{StaticResource CustomTextBoxStyle}" IsReadOnly="True"/>
+                                <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource PayButtonStyle}" VerticalAlignment="Center" ></Button>
                             </Grid>
                         </StackPanel>
                     </Border>
@@ -114,7 +142,7 @@
                 </Grid>
             </Grid>
         </Grid>
-        
+
     </Border>
-    
+
 </Window>

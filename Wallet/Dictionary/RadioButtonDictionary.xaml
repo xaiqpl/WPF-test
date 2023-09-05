@@ -19,7 +19,7 @@
                             <TextBlock Text="{Binding Title}" Margin="20 0 0 0" FontFamily="../Assets/Font/#iconfont" VerticalAlignment="Center"/>
                             <TextBlock Text=">" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="75 0 0 0" Style="{DynamicResource GuidTextBlockStyle}"/>
                             <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-                        </StackPanel>                        
+                        </StackPanel>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -85,7 +85,7 @@
     <Style x:Key="MyButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Height" Value="45"/>
-        <Setter Property="Width" Value="220"/>        
+        <Setter Property="Width" Value="220"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -124,7 +124,7 @@
         <Setter Property="Height" Value="50"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="White"/>
-        
+
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="BorderThickness" Value="0 0 0 2"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
@@ -135,7 +135,7 @@
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsChecked" Value="True">                            
+                        <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="rdBorder" Property="BorderBrush">
                                 <Setter.Value>
                                     <LinearGradientBrush StartPoint="0.5 1" EndPoint="1 1">
@@ -144,14 +144,135 @@
                                         <GradientStop Color="#6ad8ff" Offset="1"/>
                                     </LinearGradientBrush>
                                 </Setter.Value>
-                            </Setter>                           
+                            </Setter>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="rdBorder" Value="#3a3a6b"/>                          
+                            <Setter Property="Background" TargetName="rdBorder" Value="#3a3a6b"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="TextBlockStyle" TargetType="TextBox">
+        <Setter Property="Background" Value="#403a60"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border CornerRadius="10" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding Text}"
+                                          />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+    <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+    <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+    <Style x:Key="InputTextBoxStyle" TargetType="TextBox">
+        <Setter Property="Background" Value="#403a60"/>
+        <Setter Property="Foreground" Value="#fefefe"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border CornerRadius="10" Background="{TemplateBinding Background}"  x:Name="border" >
+                        <Grid>
+                            <TextBlock Text="请输入ID或者目的邮箱号" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#75708f" Name="mt" Visibility="Collapsed" />
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" 
+                   VerticalAlignment="Center" 
+                                          HorizontalAlignment="Center"
+                   Background="Transparent"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Text,RelativeSource={RelativeSource Mode=Self}}" Value="">
+                            <Setter Property="Visibility" TargetName="mt" Value="Visible"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomTextBoxStyle" TargetType="TextBox">
+        <Setter Property="Background" Value="#403a60"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border CornerRadius="10" Padding="15,0" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Content="{TemplateBinding Text}"
+                                      />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="PayButtonStyle" TargetType="Button">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Height" Value="45"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="20"  Margin="10,2"  Name="btnBorder" BorderThickness="3">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0 0.5" EndPoint="1 0.5">
+                                <GradientStop Color="#7985ff" Offset="0"/>
+                                <GradientStop Color="#6ad8ff" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Text="&#xe6cb;" FontFamily="../Assets/Font/#iconfont" VerticalAlignment="Center" Foreground="White"
+                                   FontSize="20"/>
+                            <TextBlock Text="支付" Margin="5 0 0 0" FontFamily="../Assets/Font/#iconfont" Foreground="White"
+                                   FontSize="20" VerticalAlignment="Center"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="btnBorder" Value="#21203b"/>
+                            <Setter Property="BorderBrush" TargetName="btnBorder">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0.5 0" EndPoint="0.5 1">
+                                        <GradientStop Color="#d489ff" Offset="0"/>
+                                        <GradientStop Color="#7985ff" Offset="0.6"/>
+                                        <GradientStop Color="#6ad8ff" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="btnBorder">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0 0.5" EndPoint="1 0.5">
+                                        <GradientStop Color="#4985ff" Offset="0"/>
+                                        <GradientStop Color="#3ad8ff" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

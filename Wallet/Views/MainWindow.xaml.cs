@@ -34,5 +34,13 @@ namespace Wallet.Views
                 this.DragMove();
             }
         }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("是否关闭？", "提示", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                this.Close();
+            }
+        }
     }
 }
