@@ -5,7 +5,15 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF学习1", "WPF学习1\WPF学习1.csproj", "{2CBBBF02-EC2E-4A25-8C76-D3A78A759E8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet", "Wallet\Wallet.csproj", "{4C57CDBF-B657-4EBD-841B-C376223D05A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet", "Wallet\Wallet.csproj", "{4C57CDBF-B657-4EBD-841B-C376223D05A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimulatiorTest", "SimulatiorTest\SimulatiorTest.csproj", "{7E32D18D-CDA6-46EA-AFBC-1C1CE7A49AB7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI.Core", "UI.Core", "{58A564A8-8993-4B2A-97EB-43E23D29BF4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.CustomControls", "UI.CustomControls\UI.CustomControls.csproj", "{93813438-F33F-47D9-84F3-25465EE40C5B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tool.Core", "Tool.Core", "{5F9626CB-2CD2-45B5-AD88-60D40AC22834}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +29,20 @@ Global
 		{4C57CDBF-B657-4EBD-841B-C376223D05A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C57CDBF-B657-4EBD-841B-C376223D05A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C57CDBF-B657-4EBD-841B-C376223D05A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E32D18D-CDA6-46EA-AFBC-1C1CE7A49AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E32D18D-CDA6-46EA-AFBC-1C1CE7A49AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E32D18D-CDA6-46EA-AFBC-1C1CE7A49AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E32D18D-CDA6-46EA-AFBC-1C1CE7A49AB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93813438-F33F-47D9-84F3-25465EE40C5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93813438-F33F-47D9-84F3-25465EE40C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93813438-F33F-47D9-84F3-25465EE40C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93813438-F33F-47D9-84F3-25465EE40C5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{93813438-F33F-47D9-84F3-25465EE40C5B} = {58A564A8-8993-4B2A-97EB-43E23D29BF4B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {74EAED8B-B48A-4444-99BB-CD867ABD72DB}
